@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muscle Tracker | Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <nav class="sidebar glass-panel">
+            <div class="logo">
+                <i class="fa-solid fa-dumbbell"></i>
+                <span>MusclePro</span>
+            </div>
+            <ul class="nav-links">
+                <li class="active"><i class="fa-solid fa-chart-line"></i> Dashboard</li>
+                <li><i class="fa-solid fa-list-check"></i> Workouts</li>
+                <li><i class="fa-solid fa-chart-pie"></i> Progress</li>
+                <li><i class="fa-solid fa-gear"></i> Settings</li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-nav">
+                <div class="user-info">
+                    <h2>Welcome back, Champ! <i class="fa-solid fa-fire text-neon"></i></h2>
+                    <p>Ready to crush your goals today?</p>
+                </div>
+            </header>
+
+            <div class="dashboard-grid">
+                <!-- Stats Overview -->
+                <div class="stat-card glass-panel group-purple">
+                    <div class="stat-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="stat-details">
+                        <h3>Total Workouts</h3>
+                        <p id="total-workouts-stat">0</p>
+                    </div>
+                </div>
+                <div class="stat-card glass-panel group-cyan">
+                    <div class="stat-icon"><i class="fa-solid fa-weight-scale"></i></div>
+                    <div class="stat-details">
+                        <h3>Total Volume (kg)</h3>
+                        <p id="total-volume-stat">0</p>
+                    </div>
+                </div>
+
+                <!-- Log Workout Form -->
+                <div class="action-panel glass-panel">
+                    <h3>Log a New Exercise</h3>
+                    <form id="workout-form">
+                        <div class="form-group">
+                            <label>Muscle Group</label>
+                            <select id="muscle-group" required>
+                                <option value="Chest">Chest</option>
+                                <option value="Back">Back</option>
+                                <option value="Legs">Legs</option>
+                                <option value="Arms">Arms</option>
+                                <option value="Shoulders">Shoulders</option>
+                                <option value="Core">Core</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Exercise Name</label>
+                            <input type="text" id="exercise-name" placeholder="e.g. Bench Press" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Sets</label>
+                                <input type="number" id="sets" min="1" value="3" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Reps</label>
+                                <input type="number" id="reps" min="1" value="10" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Weight (kg)</label>
+                                <input type="number" id="weight" min="0" value="0" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-primary">Add Exercise <i class="fa-solid fa-plus"></i></button>
+                    </form>
+                </div>
+
+                <!-- Recent Activity Feed -->
+                <div class="activity-panel glass-panel">
+                    <div class="panel-header">
+                        <h3>Today's Log</h3>
+                        <button class="btn-icon" id="clear-log" title="Clear Log" type="button"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                    <ul class="activity-feed" id="activity-list">
+                        <!-- Feed items added dynamically -->
+                        <div class="empty-state">No exercises logged today. Get to work!</div>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
