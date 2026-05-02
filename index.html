@@ -3,104 +3,251 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muscle Tracker | Pro</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>Level Up | Gym Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="app-container">
-        <!-- Sidebar -->
-        <nav class="sidebar glass-panel">
-            <div class="logo">
-                <i class="fa-solid fa-dumbbell"></i>
-                <span>MusclePro</span>
+
+    <!-- ===== MODALS ===== -->
+
+    <!-- Log Workout Modal -->
+    <div class="modal-overlay" id="log-modal">
+        <div class="modal glass-panel">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-dumbbell text-purple"></i> LOG EXERCISE</h2>
+                <button class="modal-close" id="close-log-modal"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            <ul class="nav-links">
-                <li class="active"><i class="fa-solid fa-chart-line"></i> Dashboard</li>
-                <li><i class="fa-solid fa-list-check"></i> Workouts</li>
-                <li><i class="fa-solid fa-chart-pie"></i> Progress</li>
-                <li><i class="fa-solid fa-gear"></i> Settings</li>
-            </ul>
-        </nav>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <header class="top-nav">
-                <div class="user-info">
-                    <h2>Welcome back, Champ! <i class="fa-solid fa-fire text-neon"></i></h2>
-                    <p>Ready to crush your goals today?</p>
+            <form id="workout-form">
+                <div class="form-group">
+                    <label>MUSCLE GROUP</label>
+                    <select id="muscle-group" required>
+                        <option value="Chest">Chest</option>
+                        <option value="Back">Back</option>
+                        <option value="Legs">Legs</option>
+                        <option value="Arms">Arms</option>
+                        <option value="Shoulders">Shoulders</option>
+                        <option value="Core">Core</option>
+                    </select>
                 </div>
-            </header>
-
-            <div class="dashboard-grid">
-                <!-- Stats Overview -->
-                <div class="stat-card glass-panel group-purple">
-                    <div class="stat-icon"><i class="fa-solid fa-bolt"></i></div>
-                    <div class="stat-details">
-                        <h3>Total Workouts</h3>
-                        <p id="total-workouts-stat">0</p>
+                <div class="form-group">
+                    <label>EXERCISE NAME</label>
+                    <input type="text" id="exercise-name" placeholder="e.g. Bench Press" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>SETS</label>
+                        <input type="number" id="sets" min="1" value="3" required>
+                    </div>
+                    <div class="form-group">
+                        <label>REPS</label>
+                        <input type="number" id="reps" min="1" value="10" required>
+                    </div>
+                    <div class="form-group">
+                        <label>WEIGHT (kg)</label>
+                        <input type="number" id="weight" min="0" value="0" step="0.5" required>
                     </div>
                 </div>
-                <div class="stat-card glass-panel group-cyan">
-                    <div class="stat-icon"><i class="fa-solid fa-weight-scale"></i></div>
-                    <div class="stat-details">
-                        <h3>Total Volume (kg)</h3>
-                        <p id="total-volume-stat">0</p>
-                    </div>
-                </div>
-
-                <!-- Log Workout Form -->
-                <div class="action-panel glass-panel">
-                    <h3>Log a New Exercise</h3>
-                    <form id="workout-form">
-                        <div class="form-group">
-                            <label>Muscle Group</label>
-                            <select id="muscle-group" required>
-                                <option value="Chest">Chest</option>
-                                <option value="Back">Back</option>
-                                <option value="Legs">Legs</option>
-                                <option value="Arms">Arms</option>
-                                <option value="Shoulders">Shoulders</option>
-                                <option value="Core">Core</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Exercise Name</label>
-                            <input type="text" id="exercise-name" placeholder="e.g. Bench Press" required>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Sets</label>
-                                <input type="number" id="sets" min="1" value="3" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Reps</label>
-                                <input type="number" id="reps" min="1" value="10" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Weight (kg)</label>
-                                <input type="number" id="weight" min="0" value="0" required>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn-primary">Add Exercise <i class="fa-solid fa-plus"></i></button>
-                    </form>
-                </div>
-
-                <!-- Recent Activity Feed -->
-                <div class="activity-panel glass-panel">
-                    <div class="panel-header">
-                        <h3>Today's Log</h3>
-                        <button class="btn-icon" id="clear-log" title="Clear Log" type="button"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                    <ul class="activity-feed" id="activity-list">
-                        <!-- Feed items added dynamically -->
-                        <div class="empty-state">No exercises logged today. Get to work!</div>
-                    </ul>
-                </div>
-            </div>
-        </main>
+                <button type="submit" class="btn-primary">ADD EXERCISE <i class="fa-solid fa-plus"></i></button>
+            </form>
+        </div>
     </div>
+
+    <!-- Activity Feed Modal -->
+    <div class="modal-overlay" id="feed-modal">
+        <div class="modal glass-panel">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-chart-line text-purple"></i> ACTIVITY LOG</h2>
+                <button class="modal-close" id="close-feed-modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="feed-controls">
+                <span id="feed-count">0 exercises logged today</span>
+                <button class="btn-danger" id="clear-log"><i class="fa-solid fa-trash"></i> Clear</button>
+            </div>
+            <ul class="activity-feed" id="activity-list">
+                <div class="empty-state"><i class="fa-solid fa-ghost"></i><p>No exercises logged yet.<br>Get to work, Hunter!</p></div>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Level Up Notification -->
+    <div class="levelup-notification" id="levelup-notif">
+        <div class="levelup-inner">
+            <i class="fa-solid fa-khanda"></i>
+            <h2>LEVEL UP!</h2>
+            <p id="levelup-text">You reached Level 2!</p>
+        </div>
+    </div>
+
+    <!-- ===== MAIN APP ===== -->
+
+    <nav class="top-nav">
+        <div class="logo">
+            <i class="fa-solid fa-khanda text-purple"></i>
+            <div class="logo-text">
+                <h1>LEVEL UP</h1>
+                <span>GYM TRACKER</span>
+            </div>
+        </div>
+        <ul class="nav-links">
+            <li class="active">HOME</li>
+            <li id="nav-log" title="Log a workout">WORKOUTS</li>
+            <li id="nav-feed" title="View activity">PROGRESS</li>
+            <li>ANALYTICS</li>
+        </ul>
+        <div class="user-profile">
+            <img src="https://ui-avatars.com/api/?name=Sung+Jinwoo&background=2b0a3d&color=d8b4fe&size=40" alt="Avatar" class="avatar">
+            <div class="user-info">
+                <span class="name">SUNG JINWOO</span>
+                <span class="level" id="nav-level-display">LV. 1</span>
+            </div>
+            <i class="fa-solid fa-chevron-down" style="font-size:0.7rem;margin-left:10px;color:#8e8b98;"></i>
+        </div>
+    </nav>
+
+    <main class="dashboard">
+        <div class="hero-section">
+            <!-- Left: Hero Content -->
+            <div class="hero-content">
+                <div class="korean-quote">
+                    <p>"나는 노력한다, 고로 나는 강해진다"</p>
+                    <p class="sub-quote">I WORK, THEREFORE I BECOME STRONG</p>
+                </div>
+                <h1 class="main-title">
+                    <span class="level-text">LEVEL</span> <span class="up-text">UP</span>
+                </h1>
+                <h2 class="sub-title">
+                    YOUR STRENGTH.<br>
+                    BECOME YOUR STRONGEST.
+                </h2>
+                <p class="description">
+                    Track your workouts. Analyze your progress.<br>
+                    Build discipline. Break your limits.
+                </p>
+                <button class="btn-dungeon" id="enter-dungeon-btn">
+                    ENTER YOUR DUNGEON <i class="fa-solid fa-chevron-right" style="margin-left:10px;font-size:0.8rem;"></i>
+                </button>
+            </div>
+
+            <!-- Center -->
+            <div class="hero-center">
+                <div class="center-daggers">
+                    <i class="fa-solid fa-khanda" style="font-size:3rem;margin-bottom:20px;"></i>
+                    <p>DISCIPLINE IS MY WEAPON<br>PROGRESS IS MY POWER</p>
+                </div>
+            </div>
+
+            <!-- Right: Status Card -->
+            <div class="status-card glass-panel">
+                <div class="card-header">
+                    <h3><i class="fa-solid fa-dumbbell"></i> YOUR STATUS</h3>
+                </div>
+
+                <div class="level-rank">
+                    <div class="stat-box">
+                        <span class="label">LEVEL</span>
+                        <span class="value" id="stat-level">1</span>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="stat-box">
+                        <span class="label">RANK</span>
+                        <span class="value rank-s" id="stat-rank">E</span>
+                    </div>
+                </div>
+
+                <div class="exp-bar-container">
+                    <div class="exp-labels">
+                        <span>EXP</span>
+                        <span id="exp-percent">0%</span>
+                    </div>
+                    <div class="exp-bar">
+                        <div class="exp-fill" id="exp-fill" style="width:0%;"></div>
+                    </div>
+                </div>
+
+                <div class="total-power">
+                    <div class="power-info">
+                        <span class="label">TOTAL POWER</span>
+                        <span class="value" id="stat-power">0</span>
+                    </div>
+                    <div class="power-bars" id="power-bars">
+                        <div class="bar h-2"></div>
+                        <div class="bar h-3"></div>
+                        <div class="bar h-5"></div>
+                        <div class="bar h-7"></div>
+                        <div class="bar h-10"></div>
+                    </div>
+                </div>
+
+                <ul class="stats-list">
+                    <li>
+                        <div class="stat-name"><i class="fa-solid fa-chart-simple"></i> WORKOUTS</div>
+                        <div class="stat-val" id="stat-workouts">0</div>
+                    </li>
+                    <li>
+                        <div class="stat-name"><i class="fa-solid fa-fire"></i> CALORIES BURNED</div>
+                        <div class="stat-val" id="stat-calories">0 kcal</div>
+                    </li>
+                    <li>
+                        <div class="stat-name"><i class="fa-solid fa-weight-scale"></i> TOTAL VOLUME</div>
+                        <div class="stat-val" id="stat-volume">0 kg</div>
+                    </li>
+                    <li>
+                        <div class="stat-name"><i class="fa-solid fa-clock-rotate-left"></i> STREAK</div>
+                        <div class="stat-val" id="stat-streak">0 Days</div>
+                    </li>
+                </ul>
+
+                <a href="#" class="view-stats" id="view-stats-btn">VIEW FULL STATS <i class="fa-solid fa-chevron-right" style="font-size:0.7rem;"></i></a>
+            </div>
+        </div>
+
+        <!-- Bottom Action Cards -->
+        <div class="bottom-grid">
+            <div class="action-card glass-panel" id="card-log">
+                <div class="card-icon"><i class="fa-solid fa-dumbbell"></i></div>
+                <div class="card-info">
+                    <h3>LOG WORKOUTS</h3>
+                    <p>Track sets, reps, weight and every move.</p>
+                </div>
+                <i class="fa-solid fa-chevron-right arrow"></i>
+            </div>
+
+            <div class="action-card glass-panel" id="card-feed">
+                <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <div class="card-info">
+                    <h3>TRACK PROGRESS</h3>
+                    <p>Visualize your gains and break your records.</p>
+                </div>
+                <i class="fa-solid fa-chevron-right arrow"></i>
+            </div>
+
+            <div class="action-card glass-panel">
+                <div class="card-icon"><i class="fa-solid fa-fire"></i></div>
+                <div class="card-info">
+                    <h3>STAY CONSISTENT</h3>
+                    <p>Build streaks. Build habits.<br>Build yourself.</p>
+                </div>
+                <i class="fa-solid fa-chevron-right arrow"></i>
+            </div>
+
+            <div class="action-card glass-panel">
+                <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="card-info">
+                    <h3>BECOME LEGENDARY</h3>
+                    <p>You vs You.<br>Everyday.</p>
+                </div>
+                <i class="fa-solid fa-chevron-right arrow"></i>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <div class="mouse"></div>
+            <span>SCROLL TO BEGIN YOUR JOURNEY</span>
+        </div>
+    </main>
+
     <script src="script.js"></script>
 </body>
 </html>
