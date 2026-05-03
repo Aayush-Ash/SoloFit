@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+:root {
+  --background: #020105;
+  --foreground: #f1f1f1;
+  --purple-glow: #a855f7;
+  --purple-muted: rgba(168, 85, 247, 0.2);
+}
+
+@layer base {
+  body {
+    @apply bg-[#020105] text-[#f1f1f1] antialiased min-h-screen overflow-x-hidden;
+    background: radial-gradient(circle at 50% -20%, #1a0b2e 0%, #020105 70%);
+    background-attachment: fixed;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-[#0c0816]/80 backdrop-blur-xl border border-white/5 rounded-lg transition-all duration-300;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  }
+  
+  .glass-panel:hover {
+    @apply border-purple-500/30 shadow-[0_0_40px_rgba(168,85,247,0.15)];
+  }
+
+  .text-glow {
+    text-shadow: 0 0 20px var(--purple-glow);
+  }
+
+  .btn-dungeon {
+    @apply relative px-10 py-4 bg-gradient-to-r from-purple-900/80 to-purple-600/60 border border-purple-400/50 text-white uppercase tracking-[4px] font-black italic transition-all duration-300 hover:scale-[1.05] hover:shadow-[0_0_30px_rgba(168,85,247,0.6)] active:scale-[0.98] rounded-full;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--cyan-glow);
+  border-radius: 10px;
+}
